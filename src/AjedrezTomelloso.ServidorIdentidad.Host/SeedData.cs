@@ -1,8 +1,4 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Security.Claims;
 using IdentityModel;
@@ -22,7 +18,7 @@ namespace AjedrezTomelloso.ServidorIdentidad.Host
             var services = new ServiceCollection();
             services.AddLogging();
             services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseSqlite(connectionString));
+               options.UseSqlServer(connectionString));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -41,6 +37,7 @@ namespace AjedrezTomelloso.ServidorIdentidad.Host
                     {
                         alice = new ApplicationUser
                         {
+                            Id = Guid.NewGuid().ToString(),
                             UserName = "alice"
                         };
                         var result = userMgr.CreateAsync(alice, "Pass123$").Result;
@@ -74,6 +71,7 @@ namespace AjedrezTomelloso.ServidorIdentidad.Host
                     {
                         bob = new ApplicationUser
                         {
+                            Id = Guid.NewGuid().ToString(),
                             UserName = "bob"
                         };
                         var result = userMgr.CreateAsync(bob, "Pass123$").Result;
