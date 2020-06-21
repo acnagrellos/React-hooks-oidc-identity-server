@@ -32,6 +32,8 @@ namespace AjedrezTomelloso.ServidorIdentidad.Host
                     context.Database.Migrate();
 
                     var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                    var roleMgr = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
                     var alice = userMgr.FindByNameAsync("alice").Result;
                     if (alice == null)
                     {
@@ -95,6 +97,15 @@ namespace AjedrezTomelloso.ServidorIdentidad.Host
                             throw new Exception(result.Errors.First().Description);
                         }
                         Log.Debug("bob created");
+                    }
+                    if (!context.Roles.Any()) 
+                    {
+                        var role = new IdentityRole("Player");
+                        var roleResult = roleMgr.CreateAsync(role).Result;
+                        if (!roleResult.Succeeded) 
+                        {
+                            throw new Exception(roleResult.Errors.First().Description);
+                        }
                     }
                     else
                     {

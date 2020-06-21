@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using System.Collections.Generic;
 
 namespace AjedrezTomelloso.ServidorIdentidad.Host
@@ -10,6 +11,7 @@ namespace AjedrezTomelloso.ServidorIdentidad.Host
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
+                new IdentityResources.Email()
             };
 
 
@@ -51,6 +53,29 @@ namespace AjedrezTomelloso.ServidorIdentidad.Host
 
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "api1" }
+                },
+
+                new Client
+                {
+                    ClientId = "react",
+                    ClientName = "react-spa",
+                    ClientSecrets = {new Secret("acf2ec6fb01a4b698ba240c2b10a0243".Sha256())},
+                    RequireClientSecret = false,
+                    RequireConsent = false,
+                    AccessTokenLifetime = 3600,
+                    AlwaysSendClientClaims = true,
+                    AlwaysIncludeUserClaimsInIdToken = true,
+                    RedirectUris = new List<string> { "http://localhost:5885/", "http://localhost:5885/callback"  },
+                    PostLogoutRedirectUris = new List<string> { "" },
+                    AllowedCorsOrigins = new List<string> { "http://localhost:5885" },
+                    AllowedGrantTypes = GrantTypes.Code,
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email
+                    },
+                    AllowOfflineAccess = true,
                 },
 
                 // SPA client using code flow + pkce

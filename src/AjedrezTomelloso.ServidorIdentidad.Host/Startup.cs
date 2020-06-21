@@ -46,7 +46,7 @@ namespace AjedrezTomelloso.ServidorIdentidad.Host
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            
+
             var builder = services.AddIdentityServer(options =>
                 {
                     options.Events.RaiseErrorEvents = true;
@@ -74,6 +74,12 @@ namespace AjedrezTomelloso.ServidorIdentidad.Host
             }
 
             app.UseStaticFiles();
+
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            );
 
             app.UseRouting();
             app.UseIdentityServer();
