@@ -8,7 +8,7 @@ const MainContainer = styled.main`
 
 const PrivatePage: React.FC = () => {
     return (
-        <MainContainer>Private Page</MainContainer>
+        <MainContainer>Public Page</MainContainer>
     );
 }
  
