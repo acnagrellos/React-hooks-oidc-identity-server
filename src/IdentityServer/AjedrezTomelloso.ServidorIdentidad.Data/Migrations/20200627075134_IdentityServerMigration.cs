@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AjedrezTomelloso.ServidorIdentidad.Host.Migrations
+namespace AjedrezTomelloso.ServidorIdentidad.Data
 {
     public partial class IdentityServerMigration : Migration
     {
@@ -44,21 +44,6 @@ namespace AjedrezTomelloso.ServidorIdentidad.Host.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(nullable: false),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserClaims", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -223,9 +208,6 @@ namespace AjedrezTomelloso.ServidorIdentidad.Host.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "UserClaims");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

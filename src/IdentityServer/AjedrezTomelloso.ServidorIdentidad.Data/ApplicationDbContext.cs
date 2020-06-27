@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using AjedrezTomelloso.ServidorIdentidad.Data.Domain;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using AjedrezTomelloso.ServidorIdentidad.Host.Models;
-using System;
-using Microsoft.AspNetCore.Identity;
 
-namespace AjedrezTomelloso.ServidorIdentidad.Host.Data
+namespace AjedrezTomelloso.ServidorIdentidad.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

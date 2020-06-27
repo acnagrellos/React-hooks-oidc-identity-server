@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AjedrezTomelloso.ServidorIdentidad.Host.Migrations
+namespace AjedrezTomelloso.ServidorIdentidad.Data
 {
     public partial class InitialMigration : Migration
     {

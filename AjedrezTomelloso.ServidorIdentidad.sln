@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjedrezTomelloso.ServidorIdentidad.Host", "src\IdentityServer\AjedrezTomelloso.ServidorIdentidad.Host\AjedrezTomelloso.ServidorIdentidad.Host.csproj", "{B5DBE32E-4708-4ABC-9274-1096CE61D336}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjedrezTomelloso.ServidorIdentidad.Data", "src\IdentityServer\AjedrezTomelloso.ServidorIdentidad.Data\AjedrezTomelloso.ServidorIdentidad.Data.csproj", "{9276DBB8-C97E-4663-AABD-25BB855CF983}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B5DBE32E-4708-4ABC-9274-1096CE61D336}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5DBE32E-4708-4ABC-9274-1096CE61D336}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5DBE32E-4708-4ABC-9274-1096CE61D336}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9276DBB8-C97E-4663-AABD-25BB855CF983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9276DBB8-C97E-4663-AABD-25BB855CF983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9276DBB8-C97E-4663-AABD-25BB855CF983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9276DBB8-C97E-4663-AABD-25BB855CF983}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

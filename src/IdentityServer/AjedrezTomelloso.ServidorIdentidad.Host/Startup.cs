@@ -1,5 +1,5 @@
-﻿using AjedrezTomelloso.ServidorIdentidad.Host.Data;
-using AjedrezTomelloso.ServidorIdentidad.Host.Models;
+﻿using AjedrezTomelloso.ServidorIdentidad.Data;
+using AjedrezTomelloso.ServidorIdentidad.Data.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Security.Claims;
+using AjedrezTomelloso.ServidorIdentidad.Data;
+using AjedrezTomelloso.ServidorIdentidad.Data.Domain;
 using IdentityModel;
-using AjedrezTomelloso.ServidorIdentidad.Host.Data;
-using AjedrezTomelloso.ServidorIdentidad.Host.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
