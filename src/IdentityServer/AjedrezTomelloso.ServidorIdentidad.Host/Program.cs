@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+﻿using System;
+using AjedrezTomelloso.ServidorIdentidad.Data;
+using AjedrezTomelloso.ServidorIdentidad.Data.Domain;
+using AjedrezTomelloso.ServidorIdentidad.Host.Infrastructure.DbContextExtensions;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
-using System;
-using System.Linq;
 
 namespace AjedrezTomelloso.ServidorIdentidad.Host
 {
@@ -32,26 +34,22 @@ namespace AjedrezTomelloso.ServidorIdentidad.Host
 
             try
             {
-                var seed = args.Contains("/seed");
-                if (seed)
-                {
-                    args = args.Except(new[] { "/seed" }).ToArray();
-                }
+                CreateHostBuilder(args)
+                    .Build()
+                    .MigrateDatabase<ApplicationDbContext>((host, context) =>
+                    {
+                        using (var scope = host.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                        {
+                            var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                            var roleMgr = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                var host = CreateHostBuilder(args).Build();
-
-                if (seed)
-                {
-                    Log.Information("Seeding database...");
-                    var config = host.Services.GetRequiredService<IConfiguration>();
-                    var connectionString = config.GetConnectionString("DefaultConnection");
-                    SeedData.EnsureSeedData(connectionString);
-                    Log.Information("Done seeding database.");
-                    return 0;
-                }
+                            Log.Information("Seed Data...");
+                            context.EnsureSeedData(userMgr, roleMgr);
+                        }
+                    })
+                    .Run();
 
                 Log.Information("Starting host...");
-                host.Run();
                 return 0;
             }
             catch (Exception ex)
