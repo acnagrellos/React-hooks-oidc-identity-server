@@ -6,9 +6,15 @@ services:
       dockerfile: ./src/IdentityServer/AjedrezTomelloso.ServidorIdentidad.Host/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=SECRETPASSWORD
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
       - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=identityserver.db;Database=identityserver;User=sa;Password=MyP@assw0rd;
     ports:
-      - "3883:80"
+      - "3882:80"
+      - "3883:443"
+    volumes:
+      - ~/.aspnet/https:/https:ro
     depends_on:
       - identityserver.db
 
@@ -21,3 +27,10 @@ services:
       - "5225:1433"
     volumes:
       - ${APPDATA}/Data/SQL:/var/opt/mssql/data:rw
+
+  react-spa:
+    build:
+      context: .
+      dockerfile: ./src/Spa/react-oidc/Dockerfile
+    ports:
+      - "5885:80"
